@@ -18,8 +18,8 @@ warning('off')
 function value = F(args)
   x = args(1);
   y = args(2);
-  %value = (x-0.5)^2 + (y-0.5)^2; % Works OK
-  value = (sin(x-0.5))^2 + (atan(y-0.5))^2;
+  value = (x-0.5)^2 + (y-0.5)^2; % Works OK
+  %value = (sin(x-0.5))^2 + (atan(y-0.5))^2;
 end
 
 ## Prints additional info with each iteration (1 ON, 0 OFF)
@@ -68,12 +68,12 @@ while(a != 0)
   
   
   ## Calculating next x
-  xn = x + alpha*e % Works OK
-  minEq = expand(F(xn)) % Works OK
+  xn = x + alpha*e; % Works OK
+  minEq = expand(F(xn)); % Works OK
   
   #######----> FROM HERE
   ####### Program works only if obtained equation 'minEq' is quadraic
-  coeffs = fliplr(sym2poly(minEq)) %x^k is at k+1; [numel(coeffs)-1] is the equation degree
+  coeffs = fliplr(sym2poly(minEq)); %x^k is at k+1; [numel(coeffs)-1] is the equation degree
   if(coeffs(3) > 0)
     % The parabola is facing up, minimum at the peak
     a = -coeffs(2)/(2*coeffs(3)); % Works OK
@@ -99,11 +99,12 @@ while(a != 0)
     printf('  Iteration [%d]\n', iterationNumber);
     printf('    a = %d\n', a);
     if(e == e1)
-      printf('    Moving along X axis by [%d].\n', a);
+      printf('      Moving along X axis by [%d].\n', a);
     else
-      printf('    Moving along Y axis by [%d].\n', a);
+      printf('      Moving along Y axis by [%d].\n', a);
     end
-    printf('    x%d = (%d, %d)\n\n', iterationNumber, x(1), x(2));
+    printf('    x%d = (%d, %d)\n', iterationNumber, x(1), x(2));
+    printf('    F(x%d) = %d\n\n', iterationNumber, F(x));
   end
   
   ## Incrementing the total iterations amount  
