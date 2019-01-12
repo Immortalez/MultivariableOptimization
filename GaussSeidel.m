@@ -15,14 +15,14 @@ format long
 %   Magdalena LOREK
 %   Sebastian CHLODEK
 
-%############## Providing necessary information ##############
+% ############## Providing necessary information ##############
 % Go to the very bottom of the script.
 
 
-%## Prints additional info with each iteration (1 ON, 0 OFF)
+% ## Prints additional info with each iteration (1 ON, 0 OFF)
 verbose = 1;
 
-%## Set the initial point, bounds for x and y, directions & precision
+% ## Set the initial point, bounds for x and y, directions & precision
 x0 = [-1, -1];
 x_range = [-1, 1];
 y_range = [-1, 1];
@@ -30,7 +30,7 @@ e1 = [1 0]; % Moving along X axis -- in odd iterations
 e2 = [0 1]; % Moving along Y axis -- in even iterations
 prec = 0.01;
 
-%##################### Informational box #####################
+% ##################### Informational box #####################
 fprintf('\n/////////////////////////////////////////////////////////////////////');
 fprintf('\n//                                                                 //');
 fprintf('\n//    OaDM Laboratory                                17.01.2019    //');
@@ -41,7 +41,7 @@ fprintf('\n//                                                                 //
 fprintf('\n/////////////////////////////////////////////////////////////////////\n\n');
 fprintf('  Initial point x0: (%d, %d)\n\n', x0(1), x0(2));
 
-%#################### Gauss Seidel Method ####################
+% #################### Gauss Seidel Method ####################
 x = x0; % Stores current point coordinates (x, y)
 e = []; % Stores current direction of moving
 ax = -1; % Stores calculated alpha for X (displacement along X axis)
@@ -54,7 +54,7 @@ iterationNumber = 1;
 
 while(ax ~= 0 && ay ~= 0)
     goingX = 1; % Going along X axis - 1; Along Y axis - 0
-    %## Choosing the proper direction
+    % ## Choosing the proper direction
     if(mod(iterationNumber, 2) == 1)
         % Odd iteration -- moving along X axis
         e = e1;
@@ -65,11 +65,11 @@ while(ax ~= 0 && ay ~= 0)
         goingX = 0;
     end
     
-    %## Calculating next x
+    % ## Calculating next x
     xn = x + alpha*e; % Works OK
     minEq = expand(F(xn)); % Works OK --> function to be minimized in interval
     
-    %## Calculating the acceptable interval for alpha
+    % ## Calculating the acceptable interval for alpha
     if(goingX == 1)
         a_range(1) = x_range(1) - x(1);
         a_range(2) = x_range(2) - x(1);
@@ -78,7 +78,7 @@ while(ax ~= 0 && ay ~= 0)
         a_range(2) = x_range(2) - x(2);
     end
     
-    %## Calculating the alpha and its value (minimizing minEq)
+    % ## Calculating the alpha and its value (minimizing minEq)
     a_domain = a_range(1):prec:a_range(2);
     a_values = double(subs(minEq, a_domain));
     minA_val = min(a_values);
@@ -89,7 +89,7 @@ while(ax ~= 0 && ay ~= 0)
         minA = minA(1);
     end
     
-    %## Assigning the displacement and calculating new x
+    % ## Assigning the displacement and calculating new x
     if(goingX == 1)
         ax = minA;
         x = double(subs(xn, ax));
@@ -98,7 +98,7 @@ while(ax ~= 0 && ay ~= 0)
         x = double(subs(xn, ay));
     end
     
-    %## Printing additional information if 'verbose' enabled
+    % ## Printing additional information if 'verbose' enabled
     if(verbose == 1)
         fprintf('  Iteration [%d]\n', iterationNumber)
         if(goingX == 1)
@@ -112,17 +112,17 @@ while(ax ~= 0 && ay ~= 0)
         fprintf('      F(x%d) = %g\n\n', iterationNumber, F(x));
     end
     
-    %## Incrementing the total iterations amount
+    % ## Incrementing the total iterations amount
     iterationNumber = iterationNumber + 1;
 end
 
-%## Summary of what we obtained as result
+% ## Summary of what we obtained as result
 fprintf('\n##############################################################\n\n');
 fprintf('    Displacement in both directions is equal to 0. Algorithm stops here.\n');
 fprintf('      Minimum found at (%g, %g) with value: %g\n\n\n', x(1), x(2), F(x));
 
 
-%############## Providing necessary information ##############
+% ############## Providing necessary information ##############
 % Provide the formula of the function
 function value = F(args)
 x = args(1);
