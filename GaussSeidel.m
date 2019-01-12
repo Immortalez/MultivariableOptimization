@@ -51,8 +51,9 @@ xn = []; % Stores the calculations for next x
 syms alpha; % Symbolic representation of alpha
 syms minEq; % Symbolic representation of obtained equation to be minimized
 iterationNumber = 1;
+amountOfIterations = iterationNumber - 1;
 
-while(ax ~= 0 && ay ~= 0)
+while(ax ~= 0 || ay ~= 0)
     goingX = 1; % Going along X axis - 1; Along Y axis - 0
     % ## Choosing the proper direction
     if(mod(iterationNumber, 2) == 1)
@@ -102,21 +103,22 @@ while(ax ~= 0 && ay ~= 0)
     if(verbose == 1)
         fprintf('  Iteration [%d]\n', iterationNumber)
         if(goingX == 1)
-            fprintf('      a = %g\n', ax);
+            fprintf('      a%d = %g\n', iterationNumber, ax);
             fprintf('      Moving along X axis by [%g].\n', ax);
         else
-            fprintf('      a = %g\n', ay);
+            fprintf('      a%d = %g\n', iterationNumber, ay);
             fprintf('      Moving along Y axis by [%g].\n', ay);
         end
         fprintf('      x%d = (%g, %g)\n', iterationNumber, x(1), x(2));
         fprintf('      F(x%d) = %g\n\n', iterationNumber, F(x));
     end
-    
-    % ## Incrementing the total iterations amount
+    % ## Incrementing the total iterations amount and number
     iterationNumber = iterationNumber + 1;
+    amountOfIterations = amountOfIterations + 1;
 end
 
 % ## Summary of what we obtained as result
+%iterationNumber = iterationNumber - 1;
 fprintf('\n##############################################################\n\n');
 fprintf('    Displacement in both directions is equal to 0. Algorithm stops here.\n');
 fprintf('      Minimum found at (%g, %g) with value: %g\n\n\n', x(1), x(2), F(x));
