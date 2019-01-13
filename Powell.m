@@ -159,6 +159,7 @@ while(a ~= 0)
         end
         fprintf('        Moving in direction [%g, %g] by [%g].\n', d(1), d(2), a);
         fprintf('        x%d = (%g, %g)\n', iterationNumber, x(1), x(2));
+        fprintf('        F(x) = %g\n\n', F(x));
     end
     
     % ## Incerementation of counters
