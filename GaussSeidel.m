@@ -118,7 +118,6 @@ while(ax ~= 0 || ay ~= 0)
 end
 
 % ## Summary of what we obtained as result
-%iterationNumber = iterationNumber - 1;
 fprintf('\n##############################################################\n\n');
 fprintf('    Displacement in both directions is equal to 0. Algorithm stops here.\n');
 fprintf('      Minimum found at (%g, %g) with value: %g\n\n\n', x(1), x(2), F(x));
