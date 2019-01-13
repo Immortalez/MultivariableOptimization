@@ -13,8 +13,8 @@ syms f(x, y);
 % ############## Providing necessary information ##############
 %f(x, y) = (x-0.5)^2 + (y-0.5)^2;
 %f(x, y) = (sin(x-0.5))^2 + (atan(y-0.5))^2;
-%f(x, y) = (sin(x-0.5))^2 + (sin(y-0.5))^2;
-f(x, y) = acot(x-0.5)^2 + (atan(y-0.5))^2;
+f(x, y) = (sin(x-0.5))^2 + (sin(y-0.5))^2;
+%f(x, y) = acot(x-0.5)^2 + (atan(y-0.5))^2;
 %f(x, y) = exp(cos(x-0.5)) + exp(cos(y-0.5));
 %f(x, y) = (y*(1-x^2))/(1.2 - sin(2*y));
 %f(x, y) = (2-3*x^4)*tan(sin(2*y+1));
