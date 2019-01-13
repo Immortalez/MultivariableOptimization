@@ -57,7 +57,7 @@ while(~(L == 0 || (gradF(1) == 0 && gradF(2) == 0) || stopCalculs == 1))
     % ## Calculating the gradient vector
     gradF = double(subs(gradFormula, {x, y}, {X(1), X(2)}));
     
-    % ## Calculating acceptable alpha interval
+    % ## Calculating acceptable lambda interval
     ax_range(1) = x_range(1) - X(1);
     ax_range(2) = x_range(2) - X(1);
     ay_range(1) = y_range(1) - X(2);
