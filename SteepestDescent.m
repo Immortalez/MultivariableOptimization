@@ -25,6 +25,7 @@ X0 = [-1, -1];
 x_range = [-1, 1];
 y_range = [-1, 1];
 prec = 0.01;
+sameValueThreshold = 0.99999 % If F(x_i-1) * {this var} <= F(X_i), STOP
 
 % ## Prints additional info with each iteration (1 ON, 0 OFF)
 verbose = 1;
@@ -88,7 +89,7 @@ while(~(L == 0 || (gradF(1) == 0 && gradF(2) == 0) || stopCalculs == 1))
     
     % ## Avoiding too much precision
     currFx = double(f(X(1), X(2)));
-    if(prevFx * prec * 0.999999999 <= currFx && iterAmount >= 10)
+    if(prevFx * sameValueThreshold <= currFx && iterAmount >= 10)
         stopCalculs = 1;
     end
     
