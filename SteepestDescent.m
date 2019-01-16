@@ -11,21 +11,21 @@ syms f(x, y);
 %   Sebastian CHLODEK
 
 % ############## Providing necessary information ##############
-%f(x, y) = (x-0.5)^2 + (y-0.5)^2;
-%f(x, y) = (sin(x-0.5))^2 + (atan(y-0.5))^2;
-f(x, y) = (sin(x-0.5))^2 + (sin(y-0.5))^2;
-%f(x, y) = acot(x-0.5)^2 + (atan(y-0.5))^2;
-%f(x, y) = exp(cos(x-0.5)) + exp(cos(y-0.5));
-%f(x, y) = (y*(1-x^2))/(1.2 - sin(2*y));
-%f(x, y) = (2-3*x^4)*tan(sin(2*y+1));
-%f(x, y) = (2-y^2)*exp(-sin(2*x-1));
+%f(x, y) = (x-0.5)^2 + (y-0.5)^2; % OK
+%f(x, y) = (sin(x-0.5))^2 + (atan(y-0.5))^2; % OK
+%f(x, y) = (sin(x-0.5))^2 + (sin(y-0.5))^2; % OK
+%f(x, y) = acot(x-0.5)^2 + (atan(y-0.5))^2; % NOT YET
+%f(x, y) = exp(cos(x-0.5)) + exp(cos(y-0.5)); % OK
+%f(x, y) = (y*(1-x^2))/(1.2 - sin(2*y)); % NOT YET
+%f(x, y) = (2-3*x^4)*tan(sin(2*y+1)); % NOT YET
+%f(x, y) = (2-y^2)*exp(-sin(2*x-1)); % NOT YET
 
 % ## Set the initial point, variables bounds and precision
 X0 = [-1, -1];
 x_range = [-1, 1];
 y_range = [-1, 1];
 prec = 0.01;
-sameValueThreshold = 0.99999 % If F(x_i-1) * {this var} <= F(X_i), STOP
+sameValueThreshold = 0.99999; % If F(x_i-1) * {this var} <= F(X_i), STOP
 
 % ## Prints additional info with each iteration (1 ON, 0 OFF)
 verbose = 1;
