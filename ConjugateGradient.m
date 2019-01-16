@@ -11,22 +11,22 @@ syms f(x, y);
 %   Sebastian CHLODEK
 
 % ############## Providing necessary information ##############
-%f(x, y) = x - y + 2*x^2 + 2*x*y + y^2;
-%f(x, y) = (x-0.5)^2 + (y-0.5)^2;
-f(x, y) = (sin(x-0.5))^2 + (atan(y-0.5))^2;
-%f(x, y) = (sin(x-0.5))^2 + (sin(y-0.5))^2;
-%f(x, y) = acot(x-0.5)^2 + (atan(y-0.5))^2;
-%f(x, y) = exp(cos(x-0.5)) + exp(cos(y-0.5));
-%f(x, y) = (y*(1-x^2))/(1.2 - sin(2*y));
-%f(x, y) = (2-3*x^4)*tan(sin(2*y+1));
-%f(x, y) = (2-y^2)*exp(-sin(2*x-1));
+%f(x, y) = x - y + 2*x^2 + 2*x*y + y^2; % OK
+f(x, y) = (x-0.5)^2 + (y-0.5)^2; % OK
+%f(x, y) = (sin(x-0.5))^2 + (atan(y-0.5))^2; % OK
+%f(x, y) = (sin(x-0.5))^2 + (sin(y-0.5))^2; % OK
+%f(x, y) = acot(x-0.5)^2 + (atan(y-0.5))^2; % NOT YET
+%f(x, y) = exp(cos(x-0.5)) + exp(cos(y-0.5)); % OK
+%f(x, y) = (y*(1-x^2))/(1.2 - sin(2*y)); % NOT YET
+%f(x, y) = (2-3*x^4)*tan(sin(2*y+1)); % NOT YET
+%f(x, y) = (2-y^2)*exp(-sin(2*x-1)); % OK
 
 % ## Set the initial point, variables bounds and precision
 X0 = [0, 0];
 x_range = [-2, 2];
 y_range = [-2, 2];
 prec = 0.01;
-sameValueThreshold = 0.99999 % If F(x_i-1) * {this var} <= F(X_i), STOP
+sameValueThreshold = 0.99999; % If F(x_i-1) * {this var} <= F(X_i), STOP
 
 % ## Prints additional info with each iteration (1 ON, 0 OFF)
 verbose = 1;
@@ -40,7 +40,9 @@ fprintf('\n//                   Multivariable Optimization                    //
 fprintf('\n//                   Conjugate Gradient Method                     //');
 fprintf('\n//                                                                 //');
 fprintf('\n/////////////////////////////////////////////////////////////////////\n\n');
-fprintf('  Initial point x0: (%d, %d)\n\n', X0(1), X0(2));
+fprintf('  Function: ');
+disp(formula(f));
+fprintf('  Initial point x0: (%d, %d)\n\n\n', X0(1), X0(2));
 
 % ################# Conjugate Gradient Method #################
 gradFormula = gradient(f)'; % Gradient of function f, symbolics
@@ -50,6 +52,7 @@ S = -gradF; % Stores current direction of displacement
 prevS = []; % Stores previous direction of displacement
 B = -1; % Stores the beta coefficient
 X = X0; % Stores current point coordinates (x, y)
+prevX = []; % Stores previous point
 Xn = []; % Stores formula for the next x
 syms lambda; % Symbolic representation of lambda
 syms minEq; % Symbolic representation of obtained equation to be minimized
@@ -68,7 +71,10 @@ while(~(L == 0 || (S(1) == 0 && S(2) == 0) || stopCalculs == 1))
         prevS = S;
         prevGradF = gradF;
         gradF = double(subs(gradFormula, {x, y}, {X(1), X(2)}));
-        B = length(gradF)^2 / length(prevGradF)^2;
+        %B = norm(gradF)^2 / norm(prevGradF)^2
+        subGradK = subs(gradFormula, [x, y], [prevX(1), prevX(2)])';
+        subGradKp1 = subs(gradFormula, [x, y], [X(1), X(2)])';
+        B = double((subGradKp1' * (subGradKp1-subGradK))/(norm(subGradK)^2));
         S = -gradF + B * prevS;
     end
     
@@ -95,6 +101,7 @@ while(~(L == 0 || (S(1) == 0 && S(2) == 0) || stopCalculs == 1))
     end
     L = minA;
     prevFx = double(f(X(1), X(2)));
+    prevX = X;
     X = double(subs(Xn, L));
     
     % ## Some problem with memory?
