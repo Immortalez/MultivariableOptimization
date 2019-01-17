@@ -9,7 +9,6 @@ format long
 % Section:
 %   Tomasz GOROL
 %   Magdalena LOREK
-%   Sebastian CHLODEK
 
 % ############## Providing necessary information ##############
 % Go to the very bottom of the script.
@@ -19,9 +18,9 @@ format long
 verbose = 1;
 
 % ## Set the initial point, bounds for x and y, directions & precision
-x0 = [-1, -1];
-x_range = [-1, 1];
-y_range = [-1, 1];
+x0 = [0, 0];
+x_range = [-1, 2];
+y_range = [-1, 2];
 d1 = [1 0]; % Moving along X axis -- in odd iterations
 d2 = [0 1]; % Moving along Y axis -- in even iterations
 prec = 0.01;
@@ -118,7 +117,7 @@ a = -1; % Calculated alpha
 powellIterNum = 1; % Number of iteration, counting as Powell
 powellIterAmount = powellIterNum - 1; % Amount of iterations, counting as Powell
 
-while(a ~= 0)
+while(~(a == 0 || (d(1) == 0 && d(2) == 0)) )
     % ## Calculating the direction of movement
     if(powellIterNum == 1)
         d(1) = x_list(iterationNumber-1, 1) - x0(1);
@@ -181,13 +180,14 @@ y = args(2);
 % Functions from the lab materials (for all x,y E [-1, 1]):
 %value = (x-0.5)^2 + (y-0.5)^2;
 %value = (sin(x-0.5))^2 + (atan(y-0.5))^2;
-value = (sin(x-0.5))^2 + (sin(y-0.5))^2;
+%value = (sin(x-0.5))^2 + (sin(y-0.5))^2;
 %value = acot(x-0.5)^2 + (atan(y-0.5))^2;
 %value = exp(cos(x-0.5)) + exp(cos(y-0.5));
 %value = (y*(1-x^2))/(1.2 - sin(2*y));
 %value = (2-3*x^4)*tan(sin(2*y+1));
 %value = (2-y^2)*exp(-sin(2*x-1));
 %value = (x-0.5)^2 + (y-1)^2;
+value = (sin(x-0.9))^2 + (atan(y-0.2))^2 + 0.1 * x^2;
 end
 
 

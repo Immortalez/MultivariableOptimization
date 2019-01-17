@@ -13,7 +13,6 @@ format long
 % Section:
 %   Tomasz GOROL
 %   Magdalena LOREK
-%   Sebastian CHLODEK
 
 % ############## Providing necessary information ##############
 % Go to the very bottom of the script.

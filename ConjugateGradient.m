@@ -8,11 +8,10 @@ syms f(x, y);
 % Section:
 %   Tomasz GOROL
 %   Magdalena LOREK
-%   Sebastian CHLODEK
 
 % ############## Providing necessary information ##############
-%f(x, y) = x - y + 2*x^2 + 2*x*y + y^2; % OK
-f(x, y) = (x-0.5)^2 + (y-0.5)^2; % OK
+f(x, y) = x - y + 2*x^2 + 2*x*y + y^2; % OK
+%f(x, y) = (x-0.5)^2 + (y-0.5)^2; % OK
 %f(x, y) = (sin(x-0.5))^2 + (atan(y-0.5))^2; % OK
 %f(x, y) = (sin(x-0.5))^2 + (sin(y-0.5))^2; % OK
 %f(x, y) = acot(x-0.5)^2 + (atan(y-0.5))^2; % NOT YET
