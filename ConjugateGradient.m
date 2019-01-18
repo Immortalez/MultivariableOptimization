@@ -1,13 +1,6 @@
 clear
 clc
 syms f(x, y);
-% OaDM Laboratory
-% MULTIVARIABLE OPTIMIZATION
-% 17.01.2019
-
-% Section:
-%   Tomasz GOROL
-%   Magdalena LOREK
 
 % ############## Providing necessary information ##############
 f(x, y) = x - y + 2*x^2 + 2*x*y + y^2; % OK

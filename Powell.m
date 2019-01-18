@@ -2,14 +2,6 @@ clear
 clc
 format long
 
-% OaDM Laboratory
-% MULTIVARIABLE OPTIMIZATION
-% 17.01.2019
-
-% Section:
-%   Tomasz GOROL
-%   Magdalena LOREK
-
 % ############## Providing necessary information ##############
 % Go to the very bottom of the script.
 

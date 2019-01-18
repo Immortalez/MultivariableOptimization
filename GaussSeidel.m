@@ -1,18 +1,6 @@
 clear
 clc
 format long
-%pkg load symbolic % Octave GNU way of loading packages -- syms, subs
-%setenv PYTHON C:\ProgramData\Anaconda3\python.exe % No comment...
-%sympref reset % No comment...
-%warning('off')
-
-% OaDM Laboratory
-% MULTIVARIABLE OPTIMIZATION
-% 17.01.2019
-
-% Section:
-%   Tomasz GOROL
-%   Magdalena LOREK
 
 % ############## Providing necessary information ##############
 % Go to the very bottom of the script.

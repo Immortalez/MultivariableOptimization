@@ -1,13 +1,6 @@
 clear
 clc
 syms f(x, y);
-% OaDM Laboratory
-% MULTIVARIABLE OPTIMIZATION
-% 17.01.2019
-
-% Section:
-%   Tomasz GOROL
-%   Magdalena LOREK
 
 % ############## Providing necessary information ##############
 f(x, y) = (sin(x-0.9))^2 + (atan(y-0.2))^2 + 0.1 * x^2;
